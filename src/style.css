@@ -113,6 +113,8 @@ nav ul {
 
 .logOut {
   margin-top: 30px;
+  margin-bottom: 10px;
+  background-color: #2d4263;
 }
 
 .my-content {
@@ -259,8 +261,9 @@ nav ul {
 .authContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+  width: 100%;
   height: 100vh;
-  justify-content: center;
   align-items: center;
 }
 
@@ -304,7 +307,7 @@ nav ul {
 }
 
 .authError {
-  color: tomato;
+  color: #c84b31;
   text-align: center;
   font-weight: 500;
   font-size: 12px;

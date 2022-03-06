@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import { authService, firebaseInstance } from "fbase";
 import AuthForm from "components/AuthForm";
+import { useHistory } from "react-router-dom";
 
 const Auth = () => {
+  const history = useHistory();
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        history.push("/");
+      }
+    });
+  }, []);
   const onSocialClick = async (event) => {
     const {
       target: { name },
@@ -13,14 +21,11 @@ const Auth = () => {
     let provider;
     if (name === "google") {
       provider = new firebaseInstance.auth.GoogleAuthProvider();
-    } else if (name === "github") {
-      provider = new firebaseInstance.auth.GithubAuthProvider();
     }
     await authService.signInWithPopup(provider);
   };
   return (
     <div className="authContainer">
-      <FontAwesomeIcon icon={faPaw} color={"#ECDBBA"} size="3x" style={{ marginBottom: 30 }} />
       <AuthForm />
       <div className="authBtns">
         <button onClick={onSocialClick} name="google" className="authBtn">

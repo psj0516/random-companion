@@ -6,7 +6,7 @@ import Content from "components/Content";
 
 export default ({ refreshUser, userObj }) => {
   const history = useHistory();
-  const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
+  const [newDisplayName, setNewDisplayName] = useState(userObj.displayName ? userObj.displayName : "이용자");
   const [contents, setContents] = useState([]);
 
   useEffect(() => {
@@ -26,6 +26,17 @@ export default ({ refreshUser, userObj }) => {
   const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
+  };
+
+  const onDeleteClick = () => {
+    const ok = window.confirm("탈퇴하시겠습니까? 작성한 글은 삭제되지 않습니다.");
+    const user = authService.currentUser;
+    if (ok) {
+      user.delete().catch((error) => {
+        console.log(error);
+      });
+      history.push("/");
+    }
   };
 
   const onChange = (event) => {
@@ -60,6 +71,9 @@ export default ({ refreshUser, userObj }) => {
       </form>
       <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
         로그아웃
+      </span>
+      <span className="formBtn cancelBtn" onClick={onDeleteClick}>
+        탈퇴하기
       </span>
       <div className="my-content">
         <span>내가 작성한 글</span>

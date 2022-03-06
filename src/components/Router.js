@@ -8,9 +8,9 @@ import Navigation from "components/Navigation";
 const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation userObj={userObj} />}
+      <Navigation userObj={userObj} isLoggedIn={isLoggedIn} />
       <Switch>
-        {isLoggedIn ? (
+        <>
           <div
             style={{
               maxWidth: 890,
@@ -22,19 +22,16 @@ const AppRouter = ({ refreshUser, isLoggedIn, userObj }) => {
             }}
           >
             <Route exact path="/">
-              <Home userObj={userObj} />
+              <Home userObj={userObj} isLoggedIn={isLoggedIn} />
             </Route>
             <Route exact path="/profile">
               <Profile userObj={userObj} refreshUser={refreshUser} />
             </Route>
-          </div>
-        ) : (
-          <>
-            <Route exact path="/">
+            <Route exact path="/auth">
               <Auth />
             </Route>
-          </>
-        )}
+          </div>
+        </>
       </Switch>
     </Router>
   );

@@ -54,7 +54,7 @@ const ContentFactory = ({ userObj, index }) => {
   const onClearAttachment = () => setAttachment("");
   return (
     <>
-      <div className="factory-box"> 내 반려동물도 자랑하기</div>
+      <div className="factory-box"> 나도 자랑하기</div>
       <form onSubmit={onSubmit} className="factoryForm">
         <label htmlFor="attach-file" className="factoryInput__label">
           <span>사진 첨부하기</span>
