@@ -11,8 +11,6 @@ const Home = ({ userObj }) => {
   const [contextInx, setContentInx] = useState(0);
   const [init, setInit] = useState(true);
 
-  useEffect(() => {}, []);
-
   const getContent = () => {
     dbService
       .collection("contents")
