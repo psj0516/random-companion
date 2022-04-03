@@ -6,7 +6,7 @@ import { faDice, faDog, faCat } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const Home = ({ userObj, isLoggedIn }) => {
+const Home = ({ userObj }) => {
   const [contents, setContents] = useState([]);
   const [contextInx, setContentInx] = useState(0);
   const [init, setInit] = useState(true);
